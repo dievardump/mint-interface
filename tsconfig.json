@@ -14,5 +14,5 @@
     "rootDir": "src"
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.json"],
-  "exclude": ["examples/**/*.ts"]
+  "exclude": ["test/**/*.ts"]
 }

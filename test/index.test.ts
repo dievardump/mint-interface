@@ -1,15 +1,16 @@
-// import contractURI from "./data/contractURI.json" assert { type: "json" };
 import contracts from "./data/contracts.js";
 import { parseConfig } from "../builder.js";
 import { ethers } from "ethers";
 import "dotenv/config";
+import { expect, jest, test, beforeAll } from "@jest/globals";
 
-(async () => {
-  console.log(process.env.RPC_PROVIDER);
-  const provider = new ethers.providers.JsonRpcProvider(
-    process.env.RPC_PROVIDER
-  );
+let provider: ethers.providers.JsonRpcProvider;
 
+beforeAll(() => {
+  provider = new ethers.providers.JsonRpcProvider(process.env.RPC_PROVIDER);
+});
+
+test("can read and format mintConfig", async () => {
   /*
       - load the config
       - construct the different phases
@@ -83,4 +84,4 @@ import "dotenv/config";
   // const phase = builder.getCurrentPhase();
   // const params = phase.getParams();
   // console.log(params);
-})();
+});
