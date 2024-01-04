@@ -130,7 +130,12 @@ class Phase {
                 abiValue: param.value,
             });
         }
-        const kind = this.hasMappingRecipient() ? "allowlist" : "public";
+        const mappingRecipient = this.hasMappingRecipient();
+        const kind = mappingRecipient ? "allowlist" : "public";
+        let additionalInfo;
+        if (mappingRecipient) {
+            additionalInfo = { mappingRecipient: mappingRecipient.values };
+        }
         return {
             collection: collection,
             status: this.isOpen ? "open" : "closed",
@@ -150,6 +155,7 @@ class Phase {
                         params,
                     },
                 },
+                additionalInfo,
             },
         };
     }

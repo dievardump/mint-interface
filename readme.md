@@ -84,7 +84,7 @@ interface TxParam {
   values?: TxParamValues; // the possible values.
 }
 
-type TxParamKind = "RECIPIENT" | "QUANTITY" | "MAPPING_RECIPIENT";
+type TxParamKind = "RECIPIENT" | "QUANTITY" | "MAPPING_RECIPIENT" | "REFERRER";
 
 // RECIPIENT -> The address to which the NFT has to be minted to
 // QUANTITY -> The quantity to mint

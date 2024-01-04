@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import {IMintConfig} from "./IMintConfig.sol";
 
 /// @title NFTMock
-interface NFTMock is ERC721, IMintConfig {
+contract NFTMock is ERC721, IMintConfig {
     struct MintPhase {
         uint32 startTime;
         uint32 endTime;
