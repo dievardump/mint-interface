@@ -31,12 +31,16 @@ export class Phase {
   }
 
   get maxMintsPerWallet(): number {
-    return this.phase.maxMintsPerWallet ?? this.globalMaxMintPerWallet ?? undefined;
+    return (
+      this.phase.maxMintsPerWallet ?? this.globalMaxMintPerWallet ?? undefined
+    );
   }
 
   get maxMintPerTransaction(): number {
     return (
-      this.phase.maxMintPerTransaction ?? this.globalMaxMintPerTransaction ?? undefined
+      this.phase.maxMintPerTransaction ??
+      this.globalMaxMintPerTransaction ??
+      undefined
     );
   }
 
@@ -198,9 +202,9 @@ export class Phase {
       },
       currency: this.phase.currency ?? ethers.constants.AddressZero,
       price: this.phase.price ?? undefined,
-      tokenId: this.phase.tokenId ?? undefined
+      tokenId: this.phase.tokenId ?? undefined,
       maxMintsPerWallet: this.maxMintsPerWallet,
-      maxMintsPerTransaction: this.maxMintsPerTransaction,
+      maxMintsPerTransaction: this.maxMintPerTransaction,
       maxSupply: this.parent.maxSupply || undefined,
       startTime: this.startTime || undefined,
       endTime: this.endTime || undefined,

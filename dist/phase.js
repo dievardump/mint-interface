@@ -17,11 +17,11 @@ class Phase {
     }
     get maxMintsPerWallet() {
         var _a, _b;
-        return (_b = (_a = this.phase.maxMintsPerWallet) !== null && _a !== void 0 ? _a : this.globalMaxMintPerWallet) !== null && _b !== void 0 ? _b : 0;
+        return ((_b = (_a = this.phase.maxMintsPerWallet) !== null && _a !== void 0 ? _a : this.globalMaxMintPerWallet) !== null && _b !== void 0 ? _b : undefined);
     }
     get maxMintPerTransaction() {
         var _a, _b;
-        return ((_b = (_a = this.phase.maxMintPerTransaction) !== null && _a !== void 0 ? _a : this.globalMaxMintPerTransaction) !== null && _b !== void 0 ? _b : 0);
+        return ((_b = (_a = this.phase.maxMintPerTransaction) !== null && _a !== void 0 ? _a : this.globalMaxMintPerTransaction) !== null && _b !== void 0 ? _b : undefined);
     }
     get price() {
         if (this.phase.price == "0")
@@ -119,7 +119,7 @@ class Phase {
         };
     }
     format() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e;
         const collection = this.parent.config.collection;
         const to = this.phase.tx.to;
         const params = [];
@@ -138,15 +138,11 @@ class Phase {
         }
         return {
             collection: collection,
-            status: this.isOpen ? "open" : "closed",
-            kind,
-            currency: (_c = this.phase.currency) !== null && _c !== void 0 ? _c : undefined,
-            price: (_d = this.phase.price) !== null && _d !== void 0 ? _d : undefined,
+            contract: collection,
             stage: `${kind}-sale`,
-            maxMintsPerWallet: this.maxMintsPerWallet,
-            startTime: this.startTime || undefined,
-            endTime: this.endTime || undefined,
-            maxSupply: this.parent.maxSupply || undefined,
+            kind,
+            status: this.isOpen ? "open" : "closed",
+            standard: "unknown",
             details: {
                 tx: {
                     to,
@@ -157,6 +153,14 @@ class Phase {
                 },
                 additionalInfo,
             },
+            currency: (_c = this.phase.currency) !== null && _c !== void 0 ? _c : ethers_1.ethers.constants.AddressZero,
+            price: (_d = this.phase.price) !== null && _d !== void 0 ? _d : undefined,
+            tokenId: (_e = this.phase.tokenId) !== null && _e !== void 0 ? _e : undefined,
+            maxMintsPerWallet: this.maxMintsPerWallet,
+            maxMintsPerTransaction: this.maxMintPerTransaction,
+            maxSupply: this.parent.maxSupply || undefined,
+            startTime: this.startTime || undefined,
+            endTime: this.endTime || undefined,
         };
     }
 }

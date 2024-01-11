@@ -13,6 +13,7 @@ export interface MintPhase {
   price?: string | ContractCall; // in wei
   currency?: string; // contract address, undefined or address(0) if native
   tx: TxBuild; // the data to build the transaction to mint
+  tokenId?: string; // the token id if ERC1155
 }
 
 export interface ContractCall {
