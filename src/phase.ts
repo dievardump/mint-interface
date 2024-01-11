@@ -31,12 +31,12 @@ export class Phase {
   }
 
   get maxMintsPerWallet(): number {
-    return this.phase.maxMintsPerWallet ?? this.globalMaxMintPerWallet ?? 0;
+    return this.phase.maxMintsPerWallet ?? this.globalMaxMintPerWallet ?? undefined;
   }
 
   get maxMintPerTransaction(): number {
     return (
-      this.phase.maxMintPerTransaction ?? this.globalMaxMintPerTransaction ?? 0
+      this.phase.maxMintPerTransaction ?? this.globalMaxMintPerTransaction ?? undefined
     );
   }
 
@@ -181,15 +181,11 @@ export class Phase {
 
     return {
       collection: collection,
-      status: this.isOpen ? "open" : "closed",
-      kind,
-      currency: this.phase.currency ?? undefined,
-      price: this.phase.price ?? undefined,
+      contract: collection,
       stage: `${kind}-sale`,
-      maxMintsPerWallet: this.maxMintsPerWallet,
-      startTime: this.startTime || undefined,
-      endTime: this.endTime || undefined,
-      maxSupply: this.parent.maxSupply || undefined,
+      kind,
+      status: this.isOpen ? "open" : "closed",
+      standard: "unknown",
       details: {
         tx: {
           to,
@@ -200,6 +196,14 @@ export class Phase {
         },
         additionalInfo,
       },
+      currency: this.phase.currency ?? ethers.constants.AddressZero,
+      price: this.phase.price ?? undefined,
+      tokenId: this.phase.tokenId ?? undefined
+      maxMintsPerWallet: this.maxMintsPerWallet,
+      maxMintsPerTransaction: this.maxMintsPerTransaction,
+      maxSupply: this.parent.maxSupply || undefined,
+      startTime: this.startTime || undefined,
+      endTime: this.endTime || undefined,
     };
   }
 }
